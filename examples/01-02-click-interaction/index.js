@@ -1,0 +1,40 @@
+import { select } from "d3";
+import { data } from "./data.js";
+
+export const main = (container, { state, setState }) => {
+  const svg = select(container)
+    .selectAll("svg")
+    .data([null])
+    .join("svg")
+    .attr("width", container.clientWidth)
+    .attr("height", container.clientHeight)
+    .style("background", "#F0FFF4");
+
+  const circles = svg
+    .selectAll("circle")
+    .data(data)
+    .join("circle")
+    .attr("cx", (d) => d.x)
+    .attr("cy", (d) => d.y)
+    .attr("r", (d) => d.r)
+    .attr("fill", (d) => d.fill)
+    .attr("opacity", 700 / 1000);
+
+  const { selectedDatum } = state;
+  const setSelectedDatum = (selectedDatum) =>
+    setState((state) => ({ ...state, selectedDatum }));
+
+  svg.on("click", () => setSelectedDatum(undefined));
+
+  circles
+    .style("cursor", "pointer")
+    .on("click", (event, d) => {
+      event.stopPropagation();
+      setSelectedDatum(d === selectedDatum ? undefined : d);
+    })
+    .attr("stroke", "none")
+    .filter((d) => d === selectedDatum)
+    .attr("stroke", "black")
+    .attr("stroke-width", 5)
+    .raise();
+};

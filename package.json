@@ -1,0 +1,27 @@
+{
+  "name": "textbook-examples",
+  "version": "1.0.0",
+  "description": "D3 examples for a data visualization textbook",
+  "main": "build.js",
+  "type": "module",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "node ./build.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/curran/textbook-examples.git"
+  },
+  "keywords": [
+    "Data",
+    "Visualization"
+  ],
+  "author": "Curran Kelleher",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/curran/textbook-examples/issues"
+  },
+  "homepage": "https://github.com/curran/textbook-examples#readme"
+}
